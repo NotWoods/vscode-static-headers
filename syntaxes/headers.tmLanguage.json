@@ -1,32 +1,68 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Headers",
-	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.headers",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.headers",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.headers",
-					"match": "\\\\."
-				}
-			]
-		}
-	},
-	"scopeName": "source.headers"
+  "name": "Headers",
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#uri"
+    },
+    {
+      "include": "#header"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.headers",
+      "begin": "\\#",
+      "end": "\\Z"
+    },
+    "uri": {
+      "name": "meta.uri.headers",
+      "begin": "^\\s*\\/",
+      "end": "\\Z",
+      "patterns": [
+        {
+          "include": "#placeholder"
+        },
+        {
+          "include": "#wildcard"
+        }
+      ]
+    },
+    "wildcard": {
+      "name": "string.other.headers",
+      "match": "(\\*)"
+    },
+    "placeholder": {
+      "name": "markup.italic.headers",
+      "match": "(?<=[\\/=])(\\:)(\\w+)(?=(?:\\s\\Z))",
+      "captures": {
+        "1": {
+          "name": "markup.placeholder.colon.headers"
+        },
+        "2": {
+          "name": "markup.placeholder.headers"
+        }
+      }
+    },
+    "header": {
+      "name": "meta.structure.dictionary.value.headers",
+      "match": "^\\s*([\\w-]+)\\s*(:)\\s*(.+)([,;]?)\\s*",
+      "captures": {
+        "1": {
+          "name": "entity.name.type.headers"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.headers"
+        },
+        "3": {
+          "name": "string.unquoted.headers"
+        },
+        "4": {
+          "name": "punctuation.separator.headers"
+        }
+      }
+    }
+  }
 }

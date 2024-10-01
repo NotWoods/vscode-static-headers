@@ -10,16 +10,28 @@
     "Programming Languages"
   ],
   "contributes": {
-    "languages": [{
-      "id": "headers",
-      "aliases": ["Headers", "headers"],
-      "extensions": [""],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "headers",
-      "scopeName": "source.headers",
-      "path": "./syntaxes/headers.tmLanguage.json"
-    }]
+    "languages": [
+      {
+        "id": "headers",
+        "aliases": [
+          "Headers",
+          "headers"
+        ],
+        "filenames": [
+          "_headers"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "headers",
+        "scopeName": "source.headers",
+        "path": "./syntaxes/headers.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node ./write-headers.mjs"
   }
 }
