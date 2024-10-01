@@ -2,13 +2,14 @@
   "name": "headers",
   "displayName": "_headers Language Support",
   "description": "Syntax highlighting support for the _headers file in Netlify/Cloudflare",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.93.0"
   },
   "categories": [
     "Programming Languages"
   ],
+  "main": "./out/extension.js",
   "contributes": {
     "languages": [
       {
@@ -31,7 +32,17 @@
       }
     ]
   },
+  "capabilities": {
+    "hoverProvider": true
+  },
   "scripts": {
-    "build": "node ./write-headers.mjs"
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./ && node ./compile-json.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.54",
+    "@types/vscode": "^1.93.0",
+    "known-http-header-db": "^1.0.6",
+    "typescript": "^5.6.2"
   }
 }

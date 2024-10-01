@@ -1,0 +1,1586 @@
+{
+  "strict-transport-security": {
+    "description": "The HTTP Strict-Transport-Security response header (often abbreviated as HSTS) informs browsers that the site should only be accessed using HTTPS, and that any future attempts to access it using HTTP should automatically be converted to HTTPS.",
+    "syntax": "Strict-Transport-Security: max-age=<expire-time>\nStrict-Transport-Security: max-age=<expire-time>; includeSubDomains\nStrict-Transport-Security: max-age=<expire-time>; preload",
+    "examples": [
+      "Strict-Transport-Security: max-age=31536000; includeSubDomains",
+      "Strict-Transport-Security: max-age=63072000; includeSubDomains; preload",
+      "Strict-Transport-Security: max-age=16070400; includeSubDomains"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security"
+  },
+  "x-content-type-options": {
+    "description": "The X-Content-Type-Options response HTTP header is a marker used by the server to indicate that the MIME types advertised in the Content-Type headers should be followed and not be changed. The header allows you to avoid MIME type sniffing by saying that the MIME types are deliberately configured. This header was introduced by Microsoft in IE 8 as a way for webmasters to block content sniffing that was happening and could transform non-executable MIME types into executable MIME types. Since then, other browsers have introduced it, even if their MIME sniffing algorithms were less aggressive. Starting with Firefox 72, top-level documents also avoid MIME sniffing (if Content-type is provided). This can cause HTML web pages to be downloaded instead of being rendered when they are served with a MIME type other than text/html. Make sure to set both headers correctly. Site security testers usually expect this header to be set.",
+    "syntax": "X-Content-Type-Options: nosniff",
+    "examples": ["X-Content-Type-Options: nosniff"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options"
+  },
+  "x-frame-options": {
+    "description": "The X-Frame-Options HTTP response header can be used to indicate whether or not a browser should be allowed to render a page in a <frame>, <iframe>, <embed> or <object>. Sites can use this to avoid click-jacking attacks, by ensuring that their content is not embedded into other sites. The added security is provided only if the user accessing the document is using a browser that supports X-Frame-Options.",
+    "syntax": "X-Frame-Options: deny",
+    "examples": ["X-Frame-Options: deny"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options"
+  },
+  "x-xss-protection": {
+    "description": "The HTTP X-XSS-Protection response header is a feature of Internet Explorer, Chrome and Safari that stops pages from loading when they detect reflected cross-site scripting (XSS) attacks. These protections are largely unnecessary in modern browsers when sites implement a strong Content-Security-Policy that disables the use of inline JavaScript ('unsafe-inline').",
+    "syntax": "X-XSS-Protection: 0\nX-XSS-Protection: 1\nX-XSS-Protection: 1; mode=block\nX-XSS-Protection: 1; report=<reporting-uri>",
+    "examples": ["X-XSS-Protection: 1; mode=block"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection"
+  },
+  "accept": {
+    "description": "The Accept request HTTP header indicates which content types, expressed as MIME types, the client is able to understand. The server uses content negotiation to select one of the proposals and informs the client of the choice with the Content-Type response header. Browsers set required values for this header based on the context of the request. For example, a browser uses different values in a request when fetching a CSS stylesheet, image, video, or a script.",
+    "syntax": "Accept: <MIME_type>/<MIME_subtype>\nAccept: <MIME_type>/*\nAccept: */*\n\n// Multiple types, weighted with the quality value syntax:\nAccept: text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8",
+    "examples": [
+      "Accept: text/html\n\nAccept: image/*\n\n// General default\nAccept: */*\n\n// Default for navigation requests\nAccept: text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8",
+      "Accept: text/html"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept"
+  },
+  "accept-ch": {
+    "description": "The Accept-CH header may be set by a server to specify which client hints headers a client should include in subsequent requests.",
+    "syntax": "Accept-CH: <comma separated list of client hint headers>",
+    "examples": [
+      "Accept-CH: Viewport-Width, Width\nVary: Viewport-Width, Width",
+      "Accept-CH: UA, Platform"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-CH"
+  },
+  "accept-ch-lifetime": {
+    "description": "The Accept-CH-Lifetime header is set by the server to specify the persistence of the client hint headers it specified using Accept-CH, that the client should include in subsequent requests.",
+    "syntax": "Accept-CH-Lifetime: <age>",
+    "examples": ["Accept-CH: Viewport-Width\nAccept-CH-Lifetime: 86400"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-CH-Lifetime"
+  },
+  "accept-charset": {
+    "description": "The Accept-Charset request HTTP header was a header that advertised a client's supported character encodings. It is no longer widely used. UTF-8 is well-supported and the overwhelmingly preferred choice for character encoding. To guarantee better privacy through less configuration-based entropy, all browsers omit the Accept-Charset header. Chrome, Firefox, Internet Explorer, Opera, and Safari abandoned this header. Today, Accept-Charset is most notable for being one of several forbidden header names.",
+    "syntax": "Accept-Charset: utf-8",
+    "examples": ["Accept-Charset: utf-8"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset"
+  },
+  "accept-encoding": {
+    "description": "The Accept-Encoding request HTTP header indicates the content encoding (usually a compression algorithm) that the client can understand. The server uses content negotiation to select one of the proposals and informs the client of that choice with the Content-Encoding response header. Even if both the client and the server support the same compression algorithms, the server may choose not to compress the body of a response if the identity value is also acceptable. Two common cases lead to this: As long as the identity;q=0 or *;q=0 directives do not explicitly forbid the identity value that means no encoding, the server must never return a 406 Not Acceptable error.",
+    "syntax": "Accept-Encoding: gzip\nAccept-Encoding: compress\nAccept-Encoding: deflate\nAccept-Encoding: br\nAccept-Encoding: identity\nAccept-Encoding: *\n\n// Multiple algorithms, weighted with the quality value syntax:\nAccept-Encoding: deflate, gzip;q=1.0, *;q=0.5",
+    "examples": [
+      "Accept-Encoding: gzip\n\nAccept-Encoding: gzip, compress, br\n\nAccept-Encoding: br;q=1.0, gzip;q=0.8, *;q=0.1",
+      "Accept-Encoding: gzip, deflate"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding"
+  },
+  "accept-language": {
+    "description": "The Accept-Language request HTTP header indicates the natural language and locale that the client prefers. The server uses content negotiation to select one of the proposals and informs the client of the choice with the Content-Language response header. Browsers set required values for this header according to their active user interface language. Users rarely change it, and such changes are not recommended because they may lead to fingerprinting. This header serves as a hint when the server cannot determine the target content language otherwise (for example, use a specific URL that depends on an explicit user decision). The server should never override an explicit user language choice. The content of Accept-Language is often out of a user's control (when traveling, for instance). A user may also want to visit a page in a language different from the user interface language. The server possibly can send back a 406 (Not Acceptable) error code when unable to serve content in a matching language. However, such a behavior is rarely implemented for a better user experience, and servers often ignore the Accept-Language header in such cases.",
+    "syntax": "Accept-Language: <language>\nAccept-Language: *\n\n// Multiple types, weighted with the quality value syntax:\nAccept-Language: fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5",
+    "examples": [
+      "Accept-Language: de",
+      "Accept-Language: de-CH",
+      "Accept-Language: en-US,en;q=0.5",
+      "Accept-Language: en-US"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language"
+  },
+  "accept-patch": {
+    "description": "The Accept-Patch response HTTP header advertises which media-type the server is able to understand in a PATCH request. Accept-Patch in response to any method means that PATCH is allowed on the resource identified by the Request-URI. Two common cases lead to this: A server receiving a PATCH request with an unsupported media type could reply with 415 Unsupported Media Type and an Accept-Patch header referencing one or more supported media types.",
+    "syntax": "Accept-Patch: application/example, text/example\nAccept-Patch: text/example;charset=utf-8\nAccept-Patch: application/merge-patch+json",
+    "examples": [
+      "Accept-Patch: application/example, text/example\n\nAccept-Patch: text/example;charset=utf-8\n\nAccept-Patch: application/merge-patch+json",
+      "Accept-Patch: text/example;charset=utf-8"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Patch"
+  },
+  "accept-post": {
+    "description": "The Accept-Post response HTTP header advertises which media types are accepted by the server for HTTP post requests. Accept-Post in response to any method means that POST is allowed on the requested resource (any document/media format in the header further indicates that the document format is allowed). For example, a server receiving a POST request with an unsupported media type could reply with 415 Unsupported Media Type and an Accept-Post header referencing one or more supported media types.",
+    "syntax": "Accept-Post: <MIME_type>/<MIME_subtype>\nAccept-Post: <MIME_type>/*\nAccept-Post: */*",
+    "examples": [
+      "Accept-Post: application/example, text/example\nAccept-Post: image/webp\nAccept-Post: */*"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Post"
+  },
+  "accept-ranges": {
+    "description": "The Accept-Ranges HTTP response header is a marker used by the server to advertise its support for partial requests from the client for file downloads. The value of this field indicates the unit that can be used to define a range. In the presence of an Accept-Ranges header, the browser may try to resume an interrupted download instead of trying to restart the download.",
+    "syntax": "Accept-Ranges: <range-unit>\nAccept-Ranges: none",
+    "examples": ["Accept-Ranges: bytes"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Ranges"
+  },
+  "access-control-allow-credentials": {
+    "description": "The Access-Control-Allow-Credentials response header tells browsers whether to expose the response to the frontend JavaScript code when the request's credentials mode (Request.credentials) is include. When a request's credentials mode (Request.credentials) is include, browsers will only expose the response to the frontend JavaScript code if the Access-Control-Allow-Credentials value is true. Credentials are cookies, authorization headers, or TLS client certificates. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials. Note that simple GET requests are not preflighted. So, if a request is made for a resource with credentials, and if this header is not returned with the resource, the response is ignored by the browser and not returned to the web content. The Access-Control-Allow-Credentials header works in conjunction with the XMLHttpRequest.withCredentials property or with the credentials option in the Request() constructor of the Fetch API. For a CORS request with credentials, for browsers to expose the response to the frontend JavaScript code, both the server (using the Access-Control-Allow-Credentials header) and the client (by setting the credentials mode for the XHR, Fetch, or Ajax request) must indicate that they're opting into including credentials.",
+    "syntax": "Access-Control-Allow-Credentials: true",
+    "examples": ["Access-Control-Allow-Credentials: true"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials"
+  },
+  "access-control-allow-headers": {
+    "description": "The Access-Control-Allow-Headers response header is used in response to a preflight request which includes the Access-Control-Request-Headers to indicate which HTTP headers can be used during the actual request. This header is required if the request has an Access-Control-Request-Headers header.",
+    "syntax": "Access-Control-Allow-Headers: [<header-name>[, <header-name>]*]\nAccess-Control-Allow-Headers: *",
+    "examples": [],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers"
+  },
+  "access-control-allow-methods": {
+    "description": "The Access-Control-Allow-Methods response header specifies one or more methods allowed when accessing a resource in response to a preflight request.",
+    "syntax": "Access-Control-Allow-Methods: <method>, <method>, …\nAccess-Control-Allow-Methods: *",
+    "examples": [
+      "Access-Control-Allow-Methods: POST, GET, OPTIONS\nAccess-Control-Allow-Methods: *"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods"
+  },
+  "access-control-allow-origin": {
+    "description": "The Access-Control-Allow-Origin response header indicates whether the response can be shared with requesting code from the given origin.",
+    "syntax": "Access-Control-Allow-Origin: *\nAccess-Control-Allow-Origin: <origin>\nAccess-Control-Allow-Origin: null",
+    "examples": [
+      "Access-Control-Allow-Origin: *",
+      "Access-Control-Allow-Origin: https://developer.mozilla.org"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin"
+  },
+  "access-control-expose-headers": {
+    "description": "The Access-Control-Expose-Headers response header allows a server to indicate which response headers should be made available to scripts running in the browser, in response to a cross-origin request. Only the CORS-safelisted response headers are exposed by default. For clients to be able to access other headers, the server must list them using the Access-Control-Expose-Headers header.",
+    "syntax": "Access-Control-Expose-Headers: [<header-name>[, <header-name>]*]\nAccess-Control-Expose-Headers: *",
+    "examples": [
+      "Access-Control-Expose-Headers: Content-Encoding",
+      "Access-Control-Expose-Headers: Content-Encoding, Kuma-Revision",
+      "Access-Control-Expose-Headers: *",
+      "Access-Control-Expose-Headers: *, Authorization"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers"
+  },
+  "access-control-max-age": {
+    "description": "The Access-Control-Max-Age response header indicates how long the results of a preflight request (that is the information contained in the Access-Control-Allow-Methods and Access-Control-Allow-Headers headers) can be cached.",
+    "syntax": "Access-Control-Max-Age: <delta-seconds>",
+    "examples": ["Access-Control-Max-Age: 600"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Max-Age"
+  },
+  "access-control-request-headers": {
+    "description": "The Access-Control-Request-Headers request header is used by browsers when issuing a preflight request to let the server know which HTTP headers the client might send when the actual request is made (such as with setRequestHeader()). The complementary server-side header of Access-Control-Allow-Headers will answer this browser-side header.",
+    "syntax": "Access-Control-Request-Headers: <header-name>, <header-name>, …",
+    "examples": ["Access-Control-Request-Headers: X-PINGOTHER, Content-Type"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Headers"
+  },
+  "access-control-request-method": {
+    "description": "The Access-Control-Request-Method request header is used by browsers when issuing a preflight request, to let the server know which HTTP method will be used when the actual request is made. This header is necessary as the preflight request is always an OPTIONS and doesn't use the same method as the actual request.",
+    "syntax": "Access-Control-Request-Method: <method>",
+    "examples": [
+      "Access-Control-Request-Method: POST",
+      "Access-Control-Request-Method: GET"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Method"
+  },
+  "age": {
+    "description": "The Age header contains the time in seconds the object was in a proxy cache. The Age header is usually close to zero. If it is Age: 0, it was probably fetched from the origin server; otherwise, it was usually calculated as a difference between the proxy's current date and the Date general header included in the HTTP response.",
+    "syntax": "Age: <delta-seconds>",
+    "examples": ["Age: 24", "Age: 12"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Age"
+  },
+  "allow": {
+    "description": "The Allow header lists the set of methods supported by a resource. This header must be sent if the server responds with a 405 Method Not Allowed status code to indicate which request methods can be used. An empty Allow header indicates that the resource allows no request methods, which might occur temporarily for a given resource, for example.",
+    "syntax": "Allow: <http-methods>",
+    "examples": ["Allow: GET, POST, HEAD", "Allow: GET, HEAD"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Allow"
+  },
+  "alt-svc": {
+    "description": "The Alt-Svc HTTP header allows a server to indicate that another network location (the \"alternative service\") can be treated as authoritative for that origin when making future requests. Doing so allows new protocol versions to be advertised without affecting in-flight requests, and can also help servers manage traffic. Using an alternative service is not visible to the end user; it does not change the URL or the origin of the request, and does not introduce extra round trips.",
+    "syntax": "Alt-Svc: clear\nAlt-Svc: <protocol-id>=<alt-authority>; ma=<max-age>\nAlt-Svc: <protocol-id>=<alt-authority>; ma=<max-age>; persist=1",
+    "examples": ["Alt-Svc: http/1.1=\"http2.example.com:8001\"; ma=7200"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Alt-Svc"
+  },
+  "authorization": {
+    "description": "The HTTP Authorization request header can be used to provide credentials that authenticate a user agent with a server, allowing access to a protected resource. The Authorization header is usually, but not always, sent after the user agent first attempts to request a protected resource without credentials. The server responds with a 401 Unauthorized message that includes at least one WWW-Authenticate header. This header indicates what authentication schemes can be used to access the resource (and any additional information needed by the client to use them). The user-agent should select the most secure authentication scheme that it supports from those offered, prompt the user for their credentials, and then re-request the resource (including the encoded credentials in the Authorization header).",
+    "syntax": "Authorization: <auth-scheme> <authorization-parameters>",
+    "examples": ["Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization"
+  },
+  "cache-control": {
+    "description": "The Cache-Control HTTP header field holds directives (instructions) — in both requests and responses — that control caching in browsers and shared caches (e.g. Proxies, CDNs).",
+    "syntax": "Cache-Control: no-cache",
+    "examples": ["Cache-Control: no-cache"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control"
+  },
+  "clear-site-data": {
+    "description": "The Clear-Site-Data header clears browsing data (cookies, storage, cache) associated with the requesting website. It allows web developers to have more control over the data stored by a client browser for their origins.",
+    "syntax": "// Single directive\nClear-Site-Data: \"cache\"\n\n// Multiple directives (comma separated)\nClear-Site-Data: \"cache\", \"cookies\"\n\n// Wild card\nClear-Site-Data: \"*\"",
+    "examples": [],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data"
+  },
+  "connection": {
+    "description": "The Connection general header controls whether the network connection stays open after the current transaction finishes. If the value sent is keep-alive, the connection is persistent and not closed, allowing for subsequent requests to the same server to be done. Except for the standard hop-by-hop headers (Keep-Alive, Transfer-Encoding, TE, Connection, Trailer, Upgrade, Proxy-Authorization and Proxy-Authenticate), any hop-by-hop headers used by the message must be listed in the Connection header, so that the first proxy knows it has to consume them and not forward them further. Standard hop-by-hop headers are also required to be listed.",
+    "syntax": "Connection: keep-alive\nConnection: close",
+    "examples": ["Connection: keep-alive", "Connection: Upgrade"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Connection"
+  },
+  "content-disposition": {
+    "description": "In a regular HTTP response, the Content-Disposition response header is a header indicating if the content is expected to be displayed inline in the browser, that is, as a Web page or as part of a Web page, or as an attachment, that is downloaded and saved locally. In a multipart/form-data body, the HTTP Content-Disposition general header is a header that must be used on each subpart of a multipart body to give information about the field it applies to. The subpart is delimited by the boundary defined in the Content-Type header. Used on the body itself, Content-Disposition has no effect. The Content-Disposition header is defined in the larger context of MIME messages for e-mail, but only a subset of the possible parameters apply to HTTP forms and POST requests. Only the value form-data, as well as the optional directive name and filename, can be used in the HTTP context.",
+    "syntax": "Content-Disposition: attachment; filename=\"fname.ext\"",
+    "examples": [
+      "200 OK\nContent-Type: text/html; charset=utf-8\nContent-Disposition: attachment; filename=\"cool.html\"\nContent-Length: 21\n\n<HTML>Save me!</HTML>",
+      "POST /test.html HTTP/1.1\nHost: example.org\nContent-Type: multipart/form-data;boundary=\"boundary\"\n\n--boundary\nContent-Disposition: form-data; name=\"field1\"\n\nvalue1\n--boundary\nContent-Disposition: form-data; name=\"field2\"; filename=\"example.txt\"\n\nvalue2\n--boundary--",
+      "Content-Disposition: attachment; filename=\"fname.ext\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition"
+  },
+  "content-dpr": {
+    "description": "The Content-DPR response header is used to confirm the image device to pixel ratio in requests where the screen DPR client hint was used to select an image resource. If the DPR client hint is used to select an image the server must specify Content-DPR in the response. If the value in Content-DPR is different from the DPR value in the request (i.e. image DPR is not the same as screen DPR) then the client must use the Content-DPR for determining intrinsic image size and scaling the image. If the Content-DPR header appears more than once in a message the last occurrence is used.",
+    "syntax": "Content-DPR: <number>",
+    "examples": [],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-DPR"
+  },
+  "content-encoding": {
+    "description": "The Content-Encoding representation header lists any encodings that have been applied to the representation (message payload), and in what order. This lets the recipient know how to decode the representation in order to obtain the original payload format. Content encoding is mainly used to compress the message data without losing information about the origin media type. Note that the original media/content type is specified in the Content-Type header, and that the Content-Encoding applies to the representation, or \"coded form\", of the data. If the original media is encoded in some way (e.g. a zip file) then this information would not be included in the Content-Encoding header. Servers are encouraged to compress data as much as possible, and should use content encoding where appropriate. Compressing a compressed media type such as a zip or jpeg may not be appropriate, as this can make the payload larger.",
+    "syntax": "Content-Encoding: gzip\nContent-Encoding: compress\nContent-Encoding: deflate\nContent-Encoding: br\n\n// Multiple, in the order in which they were applied\nContent-Encoding: deflate, gzip",
+    "examples": ["Content-Encoding: gzip"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding"
+  },
+  "content-language": {
+    "description": "The Content-Language representation header is used to describe the language(s) intended for the audience, so users can differentiate it according to their own preferred language. For example, if \"Content-Language: de-DE\" is set, it says that the document is intended for German language speakers (however, it doesn't indicate the document is written in German. For example, it might be written in English as part of a language course for German speakers. If you want to indicate which language the document is written in, use the lang attribute instead). If no Content-Language is specified, the default is that the content is intended for all language audiences. Multiple language tags are also possible, as well as applying the Content-Language header to various media types and not only to textual documents.",
+    "syntax": "Content-Language: de-DE\nContent-Language: en-US\nContent-Language: de-DE, en-CA",
+    "examples": ["Content-Language: da"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language"
+  },
+  "content-length": {
+    "description": "The Content-Length header indicates the size of the message body, in bytes, sent to the recipient.",
+    "syntax": "Content-Length: <length>",
+    "examples": ["Content-Length: 348"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Length"
+  },
+  "content-location": {
+    "description": "The Content-Location header indicates an alternate location for the returned data. The principal use is to indicate the URL of a resource transmitted as the result of content negotiation. Location and Content-Location are different. Location indicates the URL of a redirect, while Content-Location indicates the direct URL to use to access the resource, without further content negotiation in the future. Location is a header associated with the response, while Content-Location is associated with the data returned. This distinction may seem abstract without examples.",
+    "syntax": "Content-Location: <url>",
+    "examples": ["Content-Location: /index.htm"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Location"
+  },
+  "content-range": {
+    "description": "The Content-Range response HTTP header indicates where in a full body message a partial message belongs.",
+    "syntax": "Content-Range: <unit> <range-start>-<range-end>/<size>\nContent-Range: <unit> <range-start>-<range-end>/*\nContent-Range: <unit> */<size>",
+    "examples": [
+      "Content-Range: bytes 200-1000/67589",
+      "Content-Range: bytes 21010-47021/47022"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Range"
+  },
+  "content-security-policy": {
+    "description": "The HTTP Content-Security-Policy response header allows web site administrators to control resources the user agent is allowed to load for a given page. With a few exceptions, policies mostly involve specifying server origins and script endpoints. This helps guard against cross-site scripting attacks (Cross-site_scripting). For more information, see the introductory article on Content Security Policy (CSP).",
+    "syntax": "Content-Security-Policy: <policy-directive>; <policy-directive>",
+    "examples": [],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+  },
+  "content-security-policy-report-only": {
+    "description": "The HTTP Content-Security-Policy-Report-Only response header allows web developers to experiment with policies by monitoring (but not enforcing) their effects. These violation reports consist of JSON documents sent via an HTTP POST request to the specified URI. For more information, see also this article on Content Security Policy (CSP).",
+    "syntax": "Content-Security-Policy-Report-Only: <policy-directive>; <policy-directive>",
+    "examples": [
+      "Content-Security-Policy-Report-Only: default-src https:; report-uri /csp-violation-report-endpoint/",
+      "Content-Security-Policy: default-src https:; report-uri /csp-violation-report-endpoint/"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only"
+  },
+  "content-type": {
+    "description": "The Content-Type representation header is used to indicate the original media type of the resource (prior to any content encoding applied for sending). In responses, a Content-Type header provides the client with the actual content type of the returned content. This header's value may be ignored, for example when browsers perform MIME sniffing; set the X-Content-Type-Options header value to nosniff to prevent this behavior. In requests, (such as POST or PUT), the client tells the server what type of data is actually sent.",
+    "syntax": "Content-Type: text/html; charset=UTF-8\nContent-Type: multipart/form-data; boundary=something",
+    "examples": ["Content-Type: application/x-www-form-urlencoded"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type"
+  },
+  "cookie": {
+    "description": "The Cookie HTTP request header contains stored HTTP cookies associated with the server (i.e. previously sent by the server with the Set-Cookie header or set in JavaScript using Document.cookie). The Cookie header is optional and may be omitted if, for example, the browser's privacy settings block cookies.",
+    "syntax": "Cookie: <cookie-list>\nCookie: name=value\nCookie: name=value; name2=value2; name3=value3",
+    "examples": [
+      "Cookie: PHPSESSID=298zf09hf012fh2; csrftoken=u32t4o3tb3gg43; _gat=1",
+      "Cookie: $Version=1; Skin=new;"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cookie"
+  },
+  "cross-origin-embedder-policy": {
+    "description": "The HTTP Cross-Origin-Embedder-Policy (COEP) response header prevents a document from loading any cross-origin resources that don't explicitly grant the document permission (using CORP or CORS).",
+    "syntax": "Cross-Origin-Embedder-Policy: unsafe-none | require-corp",
+    "examples": [],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy"
+  },
+  "cross-origin-opener-policy": {
+    "description": "The HTTP Cross-Origin-Opener-Policy (COOP) response header allows you to ensure a top-level document does not share a browsing context group with cross-origin documents. COOP will process-isolate your document and potential attackers can't access your global object if they were to open it in a popup, preventing a set of cross-origin attacks dubbed XS-Leaks. If a cross-origin document with COOP is opened in a new window, the opening document will not have a reference to it, and the window.opener property of the new window will be null. This allows you to have more control over references to a window than rel=noopener, which only affects outgoing navigations.",
+    "syntax": "Cross-Origin-Opener-Policy: unsafe-none\nCross-Origin-Opener-Policy: same-origin-allow-popups\nCross-Origin-Opener-Policy: same-origin",
+    "examples": [],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy"
+  },
+  "cross-origin-resource-policy": {
+    "description": "The HTTP Cross-Origin-Resource-Policy response header conveys a desire that the browser blocks no-cors cross-origin/cross-site requests to the given resource.",
+    "syntax": "Cross-Origin-Resource-Policy: same-site | same-origin | cross-origin",
+    "examples": ["Cross-Origin-Resource-Policy: same-origin"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Resource-Policy"
+  },
+  "date": {
+    "description": "The Date general HTTP header contains the date and time at which the message originated.",
+    "syntax": "Date: <day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+    "examples": [
+      "Date: Wed, 21 Oct 2015 07:28:00 GMT",
+      "Date: Tue, 15 Nov 1994 08:12:31 GMT"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Date"
+  },
+  "device-memory": {
+    "description": "The Device-Memory device client hint request header field indicates the approximate amount of available RAM on the client device. The header is part of the Device Memory API.",
+    "syntax": "Device-Memory: <number>",
+    "examples": ["Accept-CH: Device-Memory", "Device-Memory: 1"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Device-Memory"
+  },
+  "digest": {
+    "description": "The Digest response HTTP header provides a digest of the selected representation of the requested resource. Representations are different forms of a particular resource that might be returned from a request: for example, the same resource might be formatted in a particular media type such as XML or JSON, localized to a particular written language or geographical region, and/or compressed or otherwise encoded for transmission. The selected representation is the actual format of a resource that is returned following content negotiation, and can be determined from the response's Representation headers. The digest applies to the whole representation of a resource, not to a particular message. It can be used to verify that the representation data has not been modified during transmission.",
+    "syntax": "Digest: <digest-algorithm>=<digest-value>\nDigest: <digest-algorithm>=<digest-value>,<digest-algorithm>=<digest-value>",
+    "examples": [
+      "Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=\nDigest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Digest"
+  },
+  "dnt": {
+    "description": "The DNT (Do Not Track) request header indicates the user's tracking preference. It lets users indicate whether they would prefer privacy rather than personalized content.",
+    "syntax": "DNT: 0\nDNT: 1\nDNT: null",
+    "examples": ["DNT: 1", "DNT: 0"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/DNT"
+  },
+  "downlink": {
+    "description": "The Downlink Client hint request header field provides the approximate bandwidth of the client's connection to the server, in Mbps. The Downlink value is given in Mbps and rounded to the nearest 25 kilobits per second to prevent fingerprinting; There are many other mechanisms an attacker might use to obtain similar information. The hint allows a server to choose what information is sent based on the network bandwidth. For example, a server might choose to send smaller versions of images and other resources on low bandwidth networks.",
+    "syntax": "Downlink: <number>",
+    "examples": ["Accept-CH: Downlink", "Downlink: 1.7"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Downlink"
+  },
+  "dpr": {
+    "description": "The DPR device client hint request header provides the client device pixel ratio. This ratio is the number of physical device pixels corresponding to every CSS pixel. The hint is useful when selecting image sources that best correspond to a screen's pixel density. This is similar to the role played by x descriptors in the <img> srcset attribute to allow user agents to select a preferred image. If a server uses the DPR hint to choose which resource is sent in a response, the response must include the Content-DPR header. The client must use the value in Content-DPR for layout if it differs from the value in the request's DPR header. If the DPR header appears more than once in a message the last occurrence is used.",
+    "syntax": "DPR: <number>",
+    "examples": ["Accept-CH: DPR", "DPR: 2.0", "Content-DPR: 2.0"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/DPR"
+  },
+  "early-data": {
+    "description": "The Early-Data header is set by an intermediary to indicate that the request has been conveyed in TLS early data, and also indicates that the intermediary understands the 425 (Too Early) status code. The Early-Data header is not set by the originator of the request (i.e., a browser).",
+    "syntax": "Early-Data: 1",
+    "examples": ["GET /resource HTTP/1.0\nHost: example.com\nEarly-Data: 1"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Early-Data"
+  },
+  "ect": {
+    "description": "The ECT Client hint request header field indicates the effective connection type: slow-2g, 2g, 3g, 4g. The value represents the \"network profile\" that best matches the connection's latency and bandwidth, rather than the actual mechanisms used for transferring the data. For example, 2g might be used to represent a slow Wi-Fi connection with high latency and low bandwidth, while 4g might be used to represent a fast fibre-based broadband network. The hint allows a server to choose what information is sent based on the broad characteristics of the network. For example, a server might choose to send smaller versions of images and other resources on less capable connections. The value might also be used as a starting point for determining what information is sent, which is further refined using information in RTT and Downlink hints.",
+    "syntax": "ECT: <value>",
+    "examples": ["Accept-CH: ECT", "ECT: 2g"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ECT"
+  },
+  "etag": {
+    "description": "The ETag (or entity tag) HTTP response header is an identifier for a specific version of a resource. It lets caches be more efficient and save bandwidth, as a web server does not need to resend a full response if the content was not changed. Additionally, etags help to prevent simultaneous updates of a resource from overwriting each other (\"mid-air collisions\"). If the resource at a given URL changes, a new Etag value must be generated. A comparison of them can determine whether two representations of a resource are the same. Etags are therefore similar to fingerprints, and might also be used for tracking purposes by some servers. They might also be set to persist indefinitely by a tracking server.",
+    "syntax": "ETag: W/\"<etag_value>\"\nETag: \"<etag_value>\"",
+    "examples": [
+      "ETag: \"33a64df551425fcc55e4d42a148795d9f25f89d4\"\nETag: W/\"0815\"",
+      "ETag: \"737060cd8c284d8af7ad3082f209582d\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag"
+  },
+  "expect": {
+    "description": "The Expect HTTP request header indicates expectations that need to be met by the server to handle the request successfully. Upon Expect: 100-continue, the server responds with: or any other 4xx status otherwise. For example, the server may reject a request if its Content-Length is too large. No common browsers send the Expect header, but some other clients such as cURL do so by default.",
+    "syntax": "Expect: 100-continue",
+    "examples": ["Expect: 100-continue"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expect"
+  },
+  "expect-ct": {
+    "description": "The Expect-CT header lets sites opt in to reporting and/or enforcement of Certificate Transparency requirements. Certificate Transparency (CT) aims to prevent the use of misissued certificates for that site from going unnoticed. Only Google Chrome and other Chromium-based browsers implemented Expect-CT, and Chromium has deprecated the header from version 107, because Chromium now enforces CT by default. See the Chrome Platform Status update. CT requirements can be satisfied via any one of the following mechanisms:",
+    "syntax": "Expect-CT: report-uri=\"<uri>\",\n           enforce,\n           max-age=<age>",
+    "examples": [
+      "Expect-CT: max-age=604800, enforce, report-uri=\"https://example.example/report\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expect-CT"
+  },
+  "expires": {
+    "description": "The Expires HTTP header contains the date/time after which the response is considered expired. Invalid expiration dates with value 0 represent a date in the past and mean that the resource is already expired.",
+    "syntax": "Expires: <http-date>",
+    "examples": [
+      "Expires: Wed, 21 Oct 2015 07:28:00 GMT",
+      "Expires: Thu, 01 Dec 1994 16:00:00 GMT"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expires"
+  },
+  "feature-policy": {
+    "description": "The HTTP Feature-Policy header provides a mechanism to allow and deny the use of browser features in its own frame, and in content within any <iframe> elements in the document. For more information, see the main Feature Policy article.",
+    "syntax": "Feature-Policy: <directive> <allowlist>",
+    "examples": [],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy"
+  },
+  "forwarded": {
+    "description": "The Forwarded request header contains information that may be added by reverse proxy servers (load balancers, CDNs, and so on) that would otherwise be altered or lost when proxy servers are involved in the path of the request. For example, if a client is connecting to a web server through an HTTP proxy (or load balancer), server logs will only contain the IP address, host address, and protocol of the proxy; this header can be used to identify the IP address, host, and protocol, of the original request. The header is optional and may be added to, modified, or removed, by any of the proxy servers on the path to the server. This header is used for debugging, statistics, and generating location-dependent content. By design, it exposes privacy sensitive information, such as the IP address of the client. Therefore, the user's privacy must be kept in mind when deploying this header. The alternative and de-facto standard versions of this header are the X-Forwarded-For, X-Forwarded-Host and X-Forwarded-Proto headers.",
+    "syntax": "Forwarded: by=<identifier>;for=<identifier>;host=<host>;proto=<http|https>",
+    "examples": [
+      "Forwarded: for=192.0.2.60;proto=http;by=203.0.113.43",
+      "Forwarded: for=192.0.2.43, for=198.51.100.17"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded"
+  },
+  "from": {
+    "description": "The From request header contains an Internet email address for a human user who controls the requesting user agent. If you are running a robotic user agent (e.g. a crawler), the From header must be sent, so you can be contacted if problems occur on servers, such as if the robot is sending excessive, unwanted, or invalid requests.",
+    "syntax": "From: <email>",
+    "examples": ["From: webmaster@example.org", "From: user@example.com"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/From"
+  },
+  "host": {
+    "description": "The Host request header specifies the host and port number of the server to which the request is being sent. If no port is included, the default port for the service requested is implied (e.g., 443 for an HTTPS URL, and 80 for an HTTP URL). A Host header field must be sent in all HTTP/1.1 request messages. A 400 (Bad Request) status code may be sent to any HTTP/1.1 request message that lacks or contains more than one Host header field.",
+    "syntax": "Host: <host>:<port>",
+    "examples": [
+      "Host: developer.mozilla.org",
+      "Host: en.wikipedia.org:8080",
+      "Host: en.wikipedia.org"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host"
+  },
+  "if-match": {
+    "description": "The If-Match HTTP request header makes a request conditional. A server will only return requested resources for GET and HEAD methods, or upload resource for PUT and other non-safe methods, if the resource matches one of the listed ETag values. If the conditional does not match then the 412 (Precondition Failed) response is returned. The comparison with the stored ETag uses the strong comparison algorithm, meaning two files are considered identical byte by byte only. If a listed ETag has the W/ prefix indicating a weak entity tag, this comparison algorithm will never match it. There are two common use cases:",
+    "syntax": "If-Match: <etag_value>\nIf-Match: <etag_value>, <etag_value>, …",
+    "examples": [
+      "If-Match: \"bfc13a64729c4290ef5b2c2730249c88ca92d82d\"\n\nIf-Match: \"67ab43\", \"54ed21\", \"7892dd\"\n\nIf-Match: *",
+      "If-Match: \"737060cd8c284d8af7ad3082f209582d\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match"
+  },
+  "if-modified-since": {
+    "description": "The If-Modified-Since request HTTP header makes the request conditional: the server sends back the requested resource, with a 200 status, only if it has been last modified after the given date. If the resource has not been modified since, the response is a 304 without any body; the Last-Modified response header of a previous request contains the date of last modification. Unlike If-Unmodified-Since, If-Modified-Since can only be used with a GET or HEAD. When used in combination with If-None-Match, it is ignored, unless the server doesn't support If-None-Match. The most common use case is to update a cached entity that has no associated ETag.",
+    "syntax": "If-Modified-Since: <day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+    "examples": [
+      "If-Modified-Since: Wed, 21 Oct 2015 07:28:00 GMT",
+      "If-Modified-Since: Sat, 29 Oct 1994 19:43:31 GMT"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since"
+  },
+  "if-none-match": {
+    "description": "The If-None-Match HTTP request header makes the request conditional. For GET and HEAD methods, the server will return the requested resource, with a 200 status, only if it doesn't have an ETag matching the given ones. For other methods, the request will be processed only if the eventually existing resource's ETag doesn't match any of the values listed. When the condition fails for GET and HEAD methods, then the server must return HTTP status code 304 (Not Modified). For methods that apply server-side changes, the status code 412 (Precondition Failed) is used. Note that the server generating a 304 response MUST generate any of the following header fields that would have been sent in a 200 (OK) response to the same request: Cache-Control, Content-Location, Date, ETag, Expires, and Vary. The comparison with the stored ETag uses the weak comparison algorithm, meaning two files are considered identical if the content is equivalent — they don't have to be identical byte by byte. For example, two pages that differ by their creation date in the footer would still be considered identical. When used in combination with If-Modified-Since, If-None-Match has precedence (if the server supports it). There are two common use cases:",
+    "syntax": "If-None-Match: \"<etag_value>\"\nIf-None-Match: \"<etag_value>\", \"<etag_value>\", …\nIf-None-Match: *",
+    "examples": [
+      "If-None-Match: \"bfc13a64729c4290ef5b2c2730249c88ca92d82d\"\n\nIf-None-Match: W/\"67ab43\", \"54ed21\", \"7892dd\"\n\nIf-None-Match: *",
+      "If-None-Match: \"737060cd8c284d8af7ad3082f209582d\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match"
+  },
+  "if-range": {
+    "description": "The If-Range HTTP request header makes a range request conditional: if the condition is fulfilled, the range request is issued, and the server sends back a 206 Partial Content answer with the appropriate body. If the condition is not fulfilled, the full resource is sent back with a 200 OK status. This header can be used either with the Last-Modified validator or with ETag, but not with both. The most common use case is to resume a download, to guarantee that the stored resource has not been modified since the last fragment has been received.",
+    "syntax": "If-Range: <day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT\nIf-Range: <etag>",
+    "examples": [
+      "If-Range: Wed, 21 Oct 2015 07:28:00 GMT",
+      "If-Range: \"737060cd8c284d8af7ad3082f209582d\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Range"
+  },
+  "if-unmodified-since": {
+    "description": "The HyperText Transfer Protocol (HTTP) If-Unmodified-Since request header makes the request for the resource conditional: the server will send the requested resource or accept it in the case of a POST or another non-safe method only if the resource has not been modified after the date specified by this HTTP header. If the resource has been modified after the specified date, the response will be a 412 Precondition Failed error. The If-Unmodified-Since HTTP header is commonly used in the following situations:",
+    "syntax": "If-Unmodified-Since: <day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+    "examples": [
+      "If-Unmodified-Since: Wed, 21 Oct 2015 07:28:00 GMT",
+      "If-Unmodified-Since: Sat, 29 Oct 1994 19:43:31 GMT"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Unmodified-Since"
+  },
+  "keep-alive": {
+    "description": "The Keep-Alive general header allows the sender to hint about how the connection may be used to set a timeout and a maximum amount of requests.",
+    "syntax": "Keep-Alive: parameters",
+    "examples": [
+      "HTTP/1.1 200 OK\nConnection: Keep-Alive\nContent-Encoding: gzip\nContent-Type: text/html; charset=utf-8\nDate: Thu, 11 Aug 2016 15:23:13 GMT\nKeep-Alive: timeout=5, max=1000\nLast-Modified: Mon, 25 Jul 2016 04:32:39 GMT\nServer: Apache\n\n(body)"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Keep-Alive"
+  },
+  "large-allocation": {
+    "description": "The non-standard Large-Allocation response header tells the browser that the page being loaded is going to want to perform a large allocation. It's not implemented in current versions of any browser, but is harmless to send to any browser. WebAssembly or asm.js applications can use large contiguous blocks of allocated memory. For complex games, for example, these allocations can be quite large, sometimes as large as 1GB. The Large-Allocation tells the browser that the web content in the to-be-loaded page is going to want to perform a large contiguous memory allocation and the browser can react to this header by starting a dedicated process for the to-be-loaded document, for example.",
+    "syntax": "Large-Allocation: 0\nLarge-Allocation: <megabytes>",
+    "examples": ["Large-Allocation: 0\nLarge-Allocation: 500"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Large-Allocation"
+  },
+  "last-modified": {
+    "description": "The Last-Modified response HTTP header contains a date and time when the origin server believes the resource was last modified. It is used as a validator to determine if the resource is the same as the previously stored one. Less accurate than an ETag header, it is a fallback mechanism. Conditional requests containing If-Modified-Since or If-Unmodified-Since headers make use of this field.",
+    "syntax": "Last-Modified: <day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+    "examples": [
+      "Last-Modified: Wed, 21 Oct 2015 07:28:00 GMT",
+      "Last-Modified: Tue, 15 Nov 1994 12:45:26 GMT"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Last-Modified"
+  },
+  "link": {
+    "description": "The HTTP Link entity-header field provides a means for serializing one or more links in HTTP headers. It is semantically equivalent to the HTML <link> element.",
+    "syntax": "Link: <uri-reference>; param1=value1; param2=\"value2\"",
+    "examples": [
+      "Link: <https://example.com>; rel=\"preconnect\"",
+      "Link: https://bad.example; rel=\"preconnect\"",
+      "Link: </feed>; rel=\"alternate\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link"
+  },
+  "location": {
+    "description": "The Location response header indicates the URL to redirect a page to. It only provides a meaning when served with a 3xx (redirection) or 201 (created) status response. In cases of redirection, the HTTP method used to make the new request to fetch the page pointed to by Location depends on the original method and the kind of redirection: All responses with one of these status codes send a Location header. In cases of resource creation, it indicates the URL to the newly created resource. Location and Content-Location are different. Location indicates the target of a redirection or the URL of a newly created resource. Content-Location indicates the direct URL to use to access the resource when content negotiation happened, without the need of further content negotiation. Location is a header associated with the response, while Content-Location is associated with the entity returned.",
+    "syntax": "Location: <url>",
+    "examples": [
+      "Location: /index.html",
+      "Location: http://www.w3.org/pub/WWW/People.html",
+      "Location: /pub/WWW/People.html"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Location"
+  },
+  "max-forwards": {
+    "description": "The Max-Forwards request HTTP header is used with the TRACE method to limit the number of nodes (usually proxies) that request goes through. Its value is an integer value indicating the maximum amount of nodes it must visit. At each node, the value is decremented and the TRACE request is forwarded to the next node, until the destination is reached, or the received value of Max-Forwards is zero. The request is then sent back, except for some headers, as the body of a 200 OK response. If the Max-Forwards header is not present in a TRACE request, a node will assume that there is no maximum number of forwards.",
+    "syntax": "Max-Forwards: <integer>",
+    "examples": ["Max-Forwards: 0\nMax-Forwards: 10", "Max-Forwards: 10"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Max-Forwards"
+  },
+  "nel": {
+    "description": "The HTTP NEL response header is used to configure network request logging.",
+    "syntax": "NEL: { \"report_to\": \"name_of_reporting_group\", \"max_age\": 12345, \"include_subdomains\": false, \"success_fraction\": 0.0, \"failure_fraction\": 1.0 }",
+    "examples": [
+      "NEL: { \"report_to\": \"name_of_reporting_group\", \"max_age\": 12345, \"include_subdomains\": false, \"success_fraction\": 0.0, \"failure_fraction\": 1.0 }"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/NEL"
+  },
+  "origin": {
+    "description": "The Origin request header indicates the origin (scheme, hostname, and port) that caused the request. For example, if a user agent needs to request resources included in a page, or fetched by scripts that it executes, then the origin of the page may be included in the request.",
+    "syntax": "Origin: null\nOrigin: <scheme>://<hostname>\nOrigin: <scheme>://<hostname>:<port>",
+    "examples": [
+      "Origin: https://developer.mozilla.org",
+      "Origin: http://developer.mozilla.org:80",
+      "Origin: http://www.example-social-network.com"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin"
+  },
+  "pragma": {
+    "description": "The Pragma HTTP/1.0 general header is an implementation-specific header that may have various effects along the request-response chain. This header serves for backwards compatibility with the HTTP/1.0 caches that do not have a Cache-Control HTTP/1.1 header.",
+    "syntax": "Pragma: no-cache",
+    "examples": ["Pragma: no-cache"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Pragma"
+  },
+  "proxy-authenticate": {
+    "description": "The HTTP Proxy-Authenticate response header defines the authentication method that should be used to gain access to a resource behind a proxy server. It authenticates the request to the proxy server, allowing it to transmit the request further. The Proxy-Authenticate header is sent along with a 407 Proxy Authentication Required.",
+    "syntax": "Proxy-Authenticate: <type> realm=<realm>",
+    "examples": [
+      "Proxy-Authenticate: Basic\n\nProxy-Authenticate: Basic realm=\"Access to the internal site\"",
+      "Proxy-Authenticate: Basic"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Proxy-Authenticate"
+  },
+  "proxy-authorization": {
+    "description": "The HTTP Proxy-Authorization request header contains the credentials to authenticate a user agent to a proxy server, usually after the server has responded with a 407 Proxy Authentication Required status and the Proxy-Authenticate header.",
+    "syntax": "Proxy-Authorization: <type> <credentials>",
+    "examples": [
+      "Proxy-Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l",
+      "Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Proxy-Authorization"
+  },
+  "range": {
+    "description": "The Range HTTP request header indicates the part of a document that the server should return. Several parts can be requested with one Range header at once, and the server may send back these ranges in a multipart document. If the server sends back ranges, it uses the 206 Partial Content for the response. If the ranges are invalid, the server returns the 416 Range Not Satisfiable error. The server can also ignore the Range header and return the whole document with a 200 status code.",
+    "syntax": "Range: <unit>=<range-start>-\nRange: <unit>=<range-start>-<range-end>\nRange: <unit>=<range-start>-<range-end>, <range-start>-<range-end>\nRange: <unit>=<range-start>-<range-end>, <range-start>-<range-end>, <range-start>-<range-end>\nRange: <unit>=-<suffix-length>",
+    "examples": [
+      "Range: bytes=200-1000, 2000-6576, 19000-",
+      "Range: bytes=0-499, -500",
+      "Range: bytes=500-999"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range"
+  },
+  "referer": {
+    "description": "The Referer HTTP request header contains an absolute or partial address of the page that makes the request. The Referer header allows a server to identify a page where people are visiting it from. This data can be used for analytics, logging, optimized caching, and more. When you follow a link, the Referer contains the address of the page that owns the link. When you make resource requests to another domain, the Referer contains the address of the page that uses the requested resource. The Referer header can contain an origin, path, and querystring, and may not contain URL fragments (i.e. \"#section\") or \"username:password\" information. The request's referrer policy defines the data that can be included. See Referrer-Policy for more information and examples.",
+    "syntax": "Referer: <url>",
+    "examples": [
+      "Referer: https://developer.mozilla.org/en-US/docs/Web/JavaScript\nReferer: https://example.com/page?q=123\nReferer: https://example.com/"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referer"
+  },
+  "referrer-policy": {
+    "description": "The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests. Aside from the HTTP header, you can set this policy in HTML.",
+    "syntax": "Referrer-Policy: no-referrer\nReferrer-Policy: no-referrer-when-downgrade\nReferrer-Policy: origin\nReferrer-Policy: origin-when-cross-origin\nReferrer-Policy: same-origin\nReferrer-Policy: strict-origin\nReferrer-Policy: strict-origin-when-cross-origin\nReferrer-Policy: unsafe-url",
+    "examples": [],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy"
+  },
+  "retry-after": {
+    "description": "The Retry-After response HTTP header indicates how long the user agent should wait before making a follow-up request. There are three main cases this header is used:",
+    "syntax": "Retry-After: <http-date>\nRetry-After: <delay-seconds>",
+    "examples": [
+      "Retry-After: 120",
+      "Retry-After: Fri, 07 Nov 2014 23:59:59 GMT"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Retry-After"
+  },
+  "rtt": {
+    "description": "The RTT Client hint request header field provides the approximate round trip time on the application layer, in milliseconds. The RTT hint, unlike transport layer RTT, includes server processing time. The RTT value is rounded to the nearest 25 milliseconds to prevent fingerprinting; There are many other mechanisms an attacker might use to obtain similar round-trip information. The hint allows a server to choose what information is sent based on the network responsiveness/latency. For example, it might choose to send fewer resources.",
+    "syntax": "RTT: <number>",
+    "examples": ["Accept-CH: RTT", "RTT: 125"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/RTT"
+  },
+  "save-data": {
+    "description": "The Save-Data network client hint request header field is a boolean which indicates the client's preference for reduced data usage. This could be for reasons such as high transfer costs, slow connection speeds, etc. Save-Data is a low entropy hint, and hence may be sent by the client even if not requested by the server using an Accept-CH response header. Further, it should be used to reduce data sent to the client irrespective of the values of other client hints that indicate network capability, like Downlink and RTT. A value of On indicates explicit user opt-in into a reduced data usage mode on the client, and when communicated to origins allows them to deliver alternative content to reduce the data downloaded such as smaller image and video resources, different markup and styling, disabled polling and automatic updates, and so on.",
+    "syntax": "Save-Data: <sd-token>",
+    "examples": ["Save-Data: on"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Save-Data"
+  },
+  "sec-ch-ua": {
+    "description": "The Sec-CH-UA user agent client hint request header provides the user-agent's branding and significant version information. The Sec-CH-UA header provides the brand and significant version for each brand associated with the browser in a comma-separated list. A brand is a commercial name for the user agent like: Chromium, Opera, Google Chrome, Microsoft Edge, Firefox, and Safari. A user agent might have several associated brands. For example, Opera, Chrome, and Edge are all based on Chromium, and will provide both brands in the Sec-CH-UA header. The significant version is the \"marketing\" version identifier that is used to distinguish between major releases of the brand. For example a Chromium build with full version number \"96.0.4664.45\" has a significant version number of \"96\". The header therefore allows the server to customize its response based on both shared brands and on particular customizations in their respective versions. Sec-CH-UA is a low entropy hint. Unless blocked by a user agent permission policy, it is sent by default, without the server opting in by sending Accept-CH. The header may include \"fake\" brands in any position and with any name. This is a feature designed to prevent servers from rejecting unknown user agents outright, forcing user agents to lie about their brand identity.",
+    "syntax": "Sec-CH-UA: \"<brand>\";v=\"<significant version>\", ...",
+    "examples": [
+      "Sec-CH-UA: \"(Not(A:Brand\";v=\"8\", \"Chromium\";v=\"98\"",
+      "Sec-CH-UA: \" Not A;Brand\";v=\"99\", \"Chromium\";v=\"96\", \"Google Chrome\";v=\"96\"",
+      "Sec-CH-UA: \" Not A;Brand\";v=\"99\", \"Chromium\";v=\"96\", \"Microsoft Edge\";v=\"96\"",
+      "Sec-CH-UA: \"Opera\";v=\"81\", \" Not;A Brand\";v=\"99\", \"Chromium\";v=\"95\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-CH-UA"
+  },
+  "sec-ch-ua-arch": {
+    "description": "The Sec-CH-UA-Arch user agent client hint request header provides the user-agent's underlying CPU architecture, such as ARM or x86. This might be used by a server, for example, to select and offer the correct binary format of an executable for a user to download.",
+    "syntax": "Sec-CH-UA-Arch: <arch>",
+    "examples": [
+      "HTTP/1.1 200 OK\nAccept-CH: Sec-CH-UA-Arch",
+      "GET /GET /my/page HTTP/1.1\nHost: example.site\n\nSec-CH-UA: \" Not A;Brand\";v=\"99\", \"Chromium\";v=\"96\", \"Google Chrome\";v=\"96\"\nSec-CH-UA-Mobile: ?0\nSec-CH-UA-Platform: \"Windows\"\nSec-CH-UA-Arch: \"x86\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-CH-UA-Arch"
+  },
+  "sec-ch-ua-bitness": {
+    "description": "The Sec-CH-UA-Bitness user agent client hint request header provides the \"bitness\" of the user-agent's underlying CPU architecture. This is the size in bits of an integer or memory address—typically 64 or 32 bits. This might be used by a server, for example, to select and offer the correct binary format of an executable for a user to download.",
+    "syntax": "Sec-CH-UA-Bitness: <bitness>",
+    "examples": [
+      "HTTP/1.1 200 OK\nAccept-CH: Sec-CH-UA-Bitness",
+      "GET /GET /my/page HTTP/1.1\nHost: example.site\n\nSec-CH-UA: \" Not A;Brand\";v=\"99\", \"Chromium\";v=\"96\", \"Google Chrome\";v=\"96\"\nSec-CH-UA-Mobile: ?0\nSec-CH-UA-Platform: \"Windows\"\nSec-CH-UA-Bitness: \"64\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-CH-UA-Bitness"
+  },
+  "sec-ch-ua-full-version": {
+    "description": "The Sec-CH-UA-Full-Version user agent client hint request header provides the user-agent's full version string.",
+    "syntax": "Sec-CH-UA-Full-Version: <version>",
+    "examples": [
+      "HTTP/1.1 200 OK\nAccept-CH: Sec-CH-UA-Full-Version",
+      "GET /GET /my/page HTTP/1.1\nHost: example.site\n\nSec-CH-UA: \" Not A;Brand\";v=\"99\", \"Chromium\";v=\"96\", \"Google Chrome\";v=\"96\"\nSec-CH-UA-Mobile: ?0\nSec-CH-UA-Full-Version: \"96.0.4664.110\"\nSec-CH-UA-Platform: \"Windows\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-CH-UA-Full-Version"
+  },
+  "sec-ch-ua-full-version-list": {
+    "description": "The Sec-CH-UA-Full-Version-List user agent client hint request header provides the user-agent's branding and full version information. The Sec-CH-UA-Full-Version-List header provides the brand and full version information for each brand associated with the browser, in a comma-separated list. A brand is a commercial name for the user agent like: Chromium, Opera, Google Chrome, Microsoft Edge, Firefox, and Safari. A user agent might have several associated brands. For example, Opera, Chrome, and Edge are all based on Chromium, and will provide both brands in the Sec-CH-UA-Full-Version-List header. The header therefore allows the server to customize its response based on both shared brands and on particular customizations in their specific respective builds. The header may include \"fake\" brands in any position and with any name. This is a feature designed to prevent servers from rejecting unknown user agents outright, forcing user agents to lie about their brand identity.",
+    "syntax": "Sec-CH-UA-Full-Version-List: \"<brand>\";v=\"<full version>\", ...",
+    "examples": [
+      "HTTP/1.1 200 OK\nAccept-CH: Sec-CH-UA-Full-Version-List",
+      "GET /my/page HTTP/1.1\nHost: example.site\n\nSec-CH-UA: \" Not A;Brand\";v=\"99\", \"Chromium\";v=\"98\", \"Google Chrome\";v=\"98\"\nSec-CH-UA-Mobile: ?0\nSec-CH-UA-Full-Version-List: \" Not A;Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"98.0.4750.0\", \"Google Chrome\";v=\"98.0.4750.0\"\nSec-CH-UA-Platform: \"Linux\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-CH-UA-Full-Version-List"
+  },
+  "sec-ch-ua-mobile": {
+    "description": "The Sec-CH-UA-Mobile user agent client hint request header indicates whether the browser is on a mobile device. It can also be used by a desktop browser to indicate a preference for a \"mobile\" user experience. Sec-CH-UA-Mobile is a low entropy hint. Unless blocked by a user agent permission policy, it is sent by default, without the server opting in by sending Accept-CH.",
+    "syntax": "Sec-CH-UA-Mobile: <boolean>",
+    "examples": ["Sec-CH-UA-Mobile: ?0", "Sec-CH-UA-Mobile: ?1"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-CH-UA-Mobile"
+  },
+  "sec-ch-ua-model": {
+    "description": "The Sec-CH-UA-Model user agent client hint request header indicates the device model on which the browser is running.",
+    "syntax": "Sec-CH-UA-Model: <device-version>",
+    "examples": [
+      "HTTP/1.1 200 OK\nAccept-CH: Sec-CH-UA-Model",
+      "GET /GET /my/page HTTP/1.1\nHost: example.site\n\nSec-CH-UA: \" Not A;Brand\";v=\"99\", \"Chromium\";v=\"96\", \"Google Chrome\";v=\"96\"\nSec-CH-UA-Mobile: ?1\nSec-CH-UA-Platform: \"Android\"\nSec-CH-UA-Bitness: \"64\"\nSec-CH-UA-Model: \"Pixel 3 XL\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-CH-UA-Model"
+  },
+  "sec-ch-ua-platform": {
+    "description": "The Sec-CH-UA-Platform user agent client hint request header provides the platform or operating system on which the user agent is running. For example: \"Windows\" or \"Android\". Sec-CH-UA-Platform is a low entropy hint. Unless blocked by a user agent permission policy, it is sent by default (without the server opting in by sending Accept-CH).",
+    "syntax": "Sec-CH-UA-Platform: <platform>",
+    "examples": ["Sec-CH-UA-Platform: \"macOS\""],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-CH-UA-Platform"
+  },
+  "sec-ch-ua-platform-version": {
+    "description": "The Sec-CH-UA-Platform-Version user agent client hint request header provides the version of the operating system on which the user agent is running.",
+    "syntax": "Sec-CH-UA-Platform-Version: <version>",
+    "examples": [
+      "HTTP/1.1 200 OK\nAccept-CH: Sec-CH-UA-Platform-Version",
+      "GET /GET /my/page HTTP/1.1\nHost: example.site\n\nSec-CH-UA: \" Not A;Brand\";v=\"99\", \"Chromium\";v=\"96\", \"Google Chrome\";v=\"96\"\nSec-CH-UA-Mobile: ?0\nSec-CH-UA-Platform: \"Windows\"\nSec-CH-UA-Platform-Version: \"10.0.0\""
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-CH-UA-Platform-Version"
+  },
+  "sec-fetch-dest": {
+    "description": "The Sec-Fetch-Dest fetch metadata request header indicates the request's destination. That is the initiator of the original fetch request, which is where (and how) the fetched data will be used. This allows servers determine whether to service a request based on whether it is appropriate for how it is expected to be used. For example, a request with an audio destination should request audio data, not some other type of resource (for example, a document that includes sensitive user information).",
+    "syntax": "Sec-Fetch-Dest: audio\nSec-Fetch-Dest: audioworklet\nSec-Fetch-Dest: document\nSec-Fetch-Dest: embed\nSec-Fetch-Dest: empty\nSec-Fetch-Dest: font\nSec-Fetch-Dest: frame\nSec-Fetch-Dest: iframe\nSec-Fetch-Dest: image\nSec-Fetch-Dest: manifest\nSec-Fetch-Dest: object\nSec-Fetch-Dest: paintworklet\nSec-Fetch-Dest: report\nSec-Fetch-Dest: script\nSec-Fetch-Dest: serviceworker\nSec-Fetch-Dest: sharedworker\nSec-Fetch-Dest: style\nSec-Fetch-Dest: track\nSec-Fetch-Dest: video\nSec-Fetch-Dest: worker\nSec-Fetch-Dest: xslt",
+    "examples": [
+      "Sec-Fetch-Dest: image\nSec-Fetch-Mode: no-cors\nSec-Fetch-Site: cross-site"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-Fetch-Dest"
+  },
+  "sec-fetch-mode": {
+    "description": "The Sec-Fetch-Mode fetch metadata request header indicates the mode of the request. Broadly speaking, this allows a server to distinguish between: requests originating from a user navigating between HTML pages, and requests to load images and other resources. For example, this header would contain navigate for top level navigation requests, while no-cors is used for loading an image.",
+    "syntax": "Sec-Fetch-Mode: cors\nSec-Fetch-Mode: navigate\nSec-Fetch-Mode: no-cors\nSec-Fetch-Mode: same-origin\nSec-Fetch-Mode: websocket",
+    "examples": [
+      "Sec-Fetch-Dest: document\nSec-Fetch-Mode: navigate\nSec-Fetch-Site: same-origin\nSec-Fetch-User: ?1",
+      "Sec-Fetch-Dest: image\nSec-Fetch-Mode: no-cors\nSec-Fetch-Site: cross-site"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-Fetch-Mode"
+  },
+  "sec-fetch-site": {
+    "description": "The Sec-Fetch-Site fetch metadata request header indicates the relationship between a request initiator's origin and the origin of the requested resource. In other words, this header tells a server whether a request for a resource is coming from the same origin, the same site, a different site, or is a \"user initiated\" request. The server can then use this information to decide if the request should be allowed. Same-origin requests would usually be allowed by default, but what happens for requests from other origins may further depend on what resource is being requested, or information in other Fetch metadata request headers. By default, requests that are not accepted should be rejected with a 403 response code.",
+    "syntax": "Sec-Fetch-Site: cross-site\nSec-Fetch-Site: same-origin\nSec-Fetch-Site: same-site\nSec-Fetch-Site: none",
+    "examples": [
+      "GET /foo.json\nSec-Fetch-Dest: empty\nSec-Fetch-Mode: cors\nSec-Fetch-Site: same-origin",
+      "GET /foo.json\nSec-Fetch-Dest: empty\nSec-Fetch-Mode: cors\nSec-Fetch-Site: cross-site"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-Fetch-Site"
+  },
+  "sec-fetch-user": {
+    "description": "The Sec-Fetch-User fetch metadata request header is only sent for requests initiated by user activation, and its value will always be ?1. A server can use this header to identify whether a navigation request from a document, iframe, etc., was originated by the user.",
+    "syntax": "Sec-Fetch-User: ?1",
+    "examples": [
+      "Sec-Fetch-Dest: document\nSec-Fetch-Mode: navigate\nSec-Fetch-Site: same-origin\nSec-Fetch-User: ?1"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-Fetch-User"
+  },
+  "sec-gpc": {
+    "description": "The Sec-GPC (Global Privacy Control) request header indicates whether the user consents to a website or service selling or sharing their personal information with third parties.",
+    "examples": [],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-GPC"
+  },
+  "sec-websocket-accept": {
+    "description": "The Sec-WebSocket-Accept header is used in the websocket opening handshake. It would appear in the response headers. That is, this is header is sent from server to client to inform that server is willing to initiate a websocket connection.",
+    "syntax": "Sec-WebSocket-Accept: <hashed key>",
+    "examples": ["Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo="],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-WebSocket-Accept"
+  },
+  "server": {
+    "description": "The Server header describes the software used by the origin server that handled the request — that is, the server that generated the response.",
+    "syntax": "Server: <product>",
+    "examples": ["Server: Apache/2.4.1 (Unix)"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server"
+  },
+  "server-timing": {
+    "description": "The Server-Timing header communicates one or more metrics and descriptions for a given request-response cycle. It is used to surface any backend server timing metrics (e.g. database read/write, CPU time, file system access, etc.) in the developer tools in the user's browser or in the PerformanceServerTiming interface.",
+    "syntax": "// Single metric without value\nServer-Timing: missedCache\n\n// Single metric with value\nServer-Timing: cpu;dur=2.4\n\n// Single metric with description and value\nServer-Timing: cache;desc=\"Cache Read\";dur=23.2\n\n// Two metrics with value\nServer-Timing: db;dur=53, app;dur=47.2\n\n// Server-Timing as trailer\nTrailer: Server-Timing\n--- response body ---\nServer-Timing: total;dur=123.4",
+    "examples": [],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server-Timing"
+  },
+  "service-worker-navigation-preload": {
+    "description": "The Service-Worker-Navigation-Preload request header indicates that the request was the result of a fetch() operation made during service worker navigation preloading. It allows a server to respond with a different resource than for a normal fetch(). If a different response may result from setting this header, the server must set Vary: Service-Worker-Navigation-Preload to ensure that the different responses are cached. For more information see NavigationPreloadManager.setHeaderValue() (and NavigationPreloadManager).",
+    "syntax": "Service-Worker-Navigation-Preload: <value>",
+    "examples": [
+      "Service-Worker-Navigation-Preload: true",
+      "Service-Worker-Navigation-Preload: json_fragment1"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Service-Worker-Navigation-Preload"
+  },
+  "set-cookie": {
+    "description": "The Set-Cookie HTTP response header is used to send a cookie from the server to the user agent, so that the user agent can send it back to the server later. To send multiple cookies, multiple Set-Cookie headers should be sent in the same response. For more information, see the guide on Using HTTP cookies.",
+    "syntax": "Set-Cookie: <cookie-name>=<cookie-value>\nSet-Cookie: <cookie-name>=<cookie-value>; Expires=<date>\nSet-Cookie: <cookie-name>=<cookie-value>; Max-Age=<number>\nSet-Cookie: <cookie-name>=<cookie-value>; Domain=<domain-value>\nSet-Cookie: <cookie-name>=<cookie-value>; Path=<path-value>\nSet-Cookie: <cookie-name>=<cookie-value>; Secure\nSet-Cookie: <cookie-name>=<cookie-value>; HttpOnly\n\nSet-Cookie: <cookie-name>=<cookie-value>; SameSite=Strict\nSet-Cookie: <cookie-name>=<cookie-value>; SameSite=Lax\nSet-Cookie: <cookie-name>=<cookie-value>; SameSite=None; Secure\n\n// Multiple attributes are also possible, for example:\nSet-Cookie: <cookie-name>=<cookie-value>; Domain=<domain-value>; Secure; HttpOnly",
+    "examples": ["Set-Cookie: UserID=JohnDoe; Max-Age=3600; Version=1"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie"
+  },
+  "sourcemap": {
+    "description": "The SourceMap HTTP response header links generated code to a source map, enabling the browser to reconstruct the original source and present the reconstructed original in the debugger.",
+    "syntax": "SourceMap: <url>\nX-SourceMap: <url> (deprecated)",
+    "examples": ["SourceMap: /path/to/file.js.map"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/SourceMap"
+  },
+  "te": {
+    "description": "The TE request header specifies the transfer encodings the user agent is willing to accept. (you could informally call it Accept-Transfer-Encoding, which would be more intuitive). See also the Transfer-Encoding response header for more details on transfer encodings. Note that chunked is always acceptable for HTTP/1.1 recipients and you don't have to specify \"chunked\" using the TE header. However, it is useful for setting if the client is accepting trailer fields in a chunked transfer coding using the \"trailers\" value.",
+    "syntax": "TE: compress\nTE: deflate\nTE: gzip\nTE: trailers\n\n// Multiple directives, weighted with the quality value syntax:\nTE: trailers, deflate;q=0.5",
+    "examples": ["TE: trailers, deflate"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/TE"
+  },
+  "timing-allow-origin": {
+    "description": "The Timing-Allow-Origin response header specifies origins that are allowed to see values of attributes retrieved via features of the Resource Timing API, which would otherwise be reported as zero due to cross-origin restrictions.",
+    "syntax": "Timing-Allow-Origin: *\nTiming-Allow-Origin: <origin>[, <origin>]*",
+    "examples": [
+      "Timing-Allow-Origin: *",
+      "Timing-Allow-Origin: https://developer.mozilla.org",
+      "Timing-Allow-Origin: <origin>[, <origin>]*"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Timing-Allow-Origin"
+  },
+  "tk": {
+    "description": "The Tk response header indicates the tracking status that applied to the corresponding request.",
+    "syntax": "Tk: !  (under construction)\nTk: ?  (dynamic)\nTk: G  (gateway or multiple parties)\nTk: N  (not tracking)\nTk: T  (tracking)\nTk: C  (tracking with consent)\nTk: P  (potential consent)\nTk: D  (disregarding DNT)\nTk: U  (updated)",
+    "examples": ["Tk: N", "Tk: ?"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Tk"
+  },
+  "trailer": {
+    "description": "The Trailer response header allows the sender to include additional fields at the end of chunked messages in order to supply metadata that might be dynamically generated while the message body is sent, such as a message integrity check, digital signature, or post-processing status.",
+    "syntax": "Trailer: header-names",
+    "examples": ["Trailer: Max-Forwards"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Trailer"
+  },
+  "transfer-encoding": {
+    "description": "The Transfer-Encoding header specifies the form of encoding used to safely transfer the payload body to the user. Transfer-Encoding is a hop-by-hop header, that is applied to a message between two nodes, not to a resource itself. Each segment of a multi-node connection can use different Transfer-Encoding values. If you want to compress data over the whole connection, use the end-to-end Content-Encoding header instead. When present on a response to a HEAD request that has no body, it indicates the value that would have applied to the corresponding GET message.",
+    "syntax": "Transfer-Encoding: chunked\nTransfer-Encoding: compress\nTransfer-Encoding: deflate\nTransfer-Encoding: gzip\n\n// Several values can be listed, separated by a comma\nTransfer-Encoding: gzip, chunked",
+    "examples": ["Transfer-Encoding: chunked"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Transfer-Encoding"
+  },
+  "upgrade": {
+    "description": "The HTTP 1.1 (only) Upgrade header can be used to upgrade an already established client/server connection to a different protocol (over the same transport protocol). For example, it can be used by a client to upgrade a connection from HTTP 1.1 to HTTP 2.0, or an HTTP or HTTPS connection into a WebSocket.",
+    "syntax": "Connection: upgrade\nUpgrade: protocol_name[/protocol_version]",
+    "examples": [
+      "Connection: upgrade\nUpgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11",
+      "Connection: Upgrade\nUpgrade: websocket",
+      "Upgrade: h2c, HTTPS/1.3, IRC/6.9, RTA/x11, websocket"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Upgrade"
+  },
+  "upgrade-insecure-requests": {
+    "description": "The HTTP Upgrade-Insecure-Requests request header sends a signal to the server expressing the client's preference for an encrypted and authenticated response, and that it can successfully handle the upgrade-insecure-requests CSP directive.",
+    "syntax": "Upgrade-Insecure-Requests: 1",
+    "examples": [
+      "GET / HTTP/1.1\nHost: example.com\nUpgrade-Insecure-Requests: 1",
+      "Location: https://example.com/\nVary: Upgrade-Insecure-Requests",
+      "Upgrade-Insecure-Requests: 1"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Upgrade-Insecure-Requests"
+  },
+  "user-agent": {
+    "description": "The User-Agent request header is a characteristic string that lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent.",
+    "syntax": "User-Agent: <product> / <product-version> <comment>",
+    "examples": [
+      "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent"
+  },
+  "vary": {
+    "description": "The Vary HTTP response header describes the parts of the request message aside from the method and URL that influenced the content of the response it occurs in. Most often, this is used to create a cache key when content negotiation is in use. The same Vary header value should be used on all responses for a given URL, including 304 Not Modified responses and the \"default\" response.",
+    "syntax": "Vary: *\nVary: <header-name>, <header-name>, ...",
+    "examples": ["Vary: *", "Vary: Accept-Language"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Vary"
+  },
+  "via": {
+    "description": "The Via general header is added by proxies, both forward and reverse, and can appear in the request or response headers. It is used for tracking message forwards, avoiding request loops, and identifying the protocol capabilities of senders along the request/response chain.",
+    "syntax": "Via: [ <protocol-name> \"/\" ] <protocol-version> <host> [ \":\" <port> ]\nVia: [ <protocol-name> \"/\" ] <protocol-version> <pseudonym>",
+    "examples": [
+      "Via: 1.1 vegur\nVia: HTTP/1.1 GWA\nVia: 1.0 fred, 1.1 p.example.net",
+      "Via: 1.0 fred, 1.1 example.com (Apache/1.1)"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Via"
+  },
+  "viewport-width": {
+    "description": "The Viewport-Width device client hint request header provides the client's layout viewport width in CSS pixels. The value is rounded up to the smallest following integer (i.e. ceiling value). The hint can be used with other screen-specific hints to deliver images optimized for a specific screen size, or to omit resources that are not needed for a particular screen width. If the Viewport-Width header appears more than once in a message the last occurrence is used.",
+    "syntax": "Viewport-Width: <number>",
+    "examples": ["Accept-CH: Viewport-Width", "Viewport-Width: 320"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Viewport-Width"
+  },
+  "want-digest": {
+    "description": "The Want-Digest HTTP header is primarily used in a request, to ask the server to provide a digest of the requested resource using the Digest response header. The header contains identifiers for one or more digest algorithms that the sender wishes the server to use to create the digest. The request may use quality values to indicate its preference/order for particular digest algorithms. If Want-Digest does not include any digest algorithms that the server supports, the server may respond with: See the page for the Digest header for more information.",
+    "syntax": "Want-Digest: <digest-algorithm>\n\n// Multiple algorithms, weighted with the quality value syntax:\nWant-Digest: <digest-algorithm><q-value>,<digest-algorithm><q-value>",
+    "examples": [
+      "Want-Digest: sha-256\nWant-Digest: SHA-512;q=0.3, sha-256;q=1, md5;q=0"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Want-Digest"
+  },
+  "warning": {
+    "description": "The Warning HTTP header contains information about possible problems with the status of the message. More than one Warning header may appear in a response. Warning header fields can, in general, be applied to any message. However, some warn-codes are specific to caches and can only be applied to response messages.",
+    "syntax": "Warning: <warn-code> <warn-agent> <warn-text> [<warn-date>]",
+    "examples": [
+      "Warning: 110 anderson/1.3.37 \"Response is stale\"\n\nDate: Wed, 21 Oct 2015 07:28:00 GMT\nWarning: 112 - \"cache down\" \"Wed, 21 Oct 2015 07:28:00 GMT\"",
+      "Warning: 199 Miscellaneous warning"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Warning"
+  },
+  "width": {
+    "description": "The Width device client hint request header field indicates the desired resource width in physical pixels — the intrinsic size of an image. The provided pixel value is a number rounded to the smallest following integer (i.e. ceiling value). The hint is particularly useful because it allows the client to request a resource that is optimal for both the screen and the layout: taking into account both the density-corrected width of the screen and the image's extrinsic size within the layout. If the desired resource width is not known at the time of the request or the resource does not have a display width, the Width header field can be omitted. If the Width header appears more than once in a message the last occurrence is used.",
+    "syntax": "Width: <number>",
+    "examples": ["Accept-CH: Width", "Width: 1920"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Width"
+  },
+  "www-authenticate": {
+    "description": "The HTTP WWW-Authenticate response header defines the HTTP authentication methods (\"challenges\") that might be used to gain access to a specific resource. A server using HTTP authentication will respond with a 401 Unauthorized response to a request for a protected resource. This response must include at least one WWW-Authenticate header and at least one challenge, to indicate what authentication schemes can be used to access the resource (and any additional data that each particular scheme needs). Multiple challenges are allowed in one WWW-Authenticate header, and multiple WWW-Authenticate headers are allowed in one response. A server may also include the WWW-Authenticate header in other response messages to indicate that supplying credentials might affect the response. After receiving the WWW-Authenticate header, a client will typically prompt the user for credentials, and then re-request the resource. This new request uses the Authorization header to supply the credentials to the server, encoded appropriately for the selected \"challenge\" authentication method. The client is expected to select the most secure of the challenges it understands (note that in some cases the \"most secure\" method is debatable).",
+    "syntax": "// Challenges specified in single header\nWWW-Authenticate: challenge1, ..., challengeN\n\n// Challenges specified in multiple headers\nWWW-Authenticate: challenge1\n...\nWWW-Authenticate: challengeN",
+    "examples": ["WWW-Authenticate: Basic"],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/WWW-Authenticate"
+  },
+  "x-dns-prefetch-control": {
+    "description": "The X-DNS-Prefetch-Control HTTP response header controls DNS prefetching, a feature by which browsers proactively perform domain name resolution on both links that the user may choose to follow as well as URLs for items referenced by the document, including images, CSS, JavaScript, and so forth. This prefetching is performed in the background, so that the DNS is likely to have been resolved by the time the referenced items are needed. This reduces latency when the user clicks a link.",
+    "syntax": "X-DNS-Prefetch-Control: on\nX-DNS-Prefetch-Control: off",
+    "examples": [],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control"
+  },
+  "x-forwarded-for": {
+    "description": "The X-Forwarded-For (XFF) request header is a de-facto standard header for identifying the originating IP address of a client connecting to a web server through a proxy server. When a client connects directly to a server, the client's IP address is sent to the server (and is often written to server access logs). But if a client connection passes through any forward or reverse proxies, the server only sees the final proxy's IP address, which is often of little use. That's especially true if the final proxy is a load balancer which is part of the same installation as the server. So, to provide a more-useful client IP address to the server, the X-Forwarded-For request header is used. For detailed guidance on using this header, see the Parsing and Selecting an IP address sections. A standardized version of this header is the HTTP Forwarded header.",
+    "syntax": "X-Forwarded-For: <client>, <proxy1>, <proxy2>",
+    "examples": [
+      "X-Forwarded-For: 2001:db8:85a3:8d3:1319:8a2e:370:7348\n\nX-Forwarded-For: 203.0.113.195\n\nX-Forwarded-For: 203.0.113.195, 2001:db8:85a3:8d3:1319:8a2e:370:7348\n\nX-Forwarded-For: 203.0.113.195,2001:db8:85a3:8d3:1319:8a2e:370:7348,150.172.238.178",
+      "X-Forwarded-For: client1, proxy1, proxy2",
+      "X-Forwarded-For: 129.78.138.66, 129.78.64.103"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For"
+  },
+  "x-forwarded-host": {
+    "description": "The X-Forwarded-Host (XFH) header is a de-facto standard header for identifying the original host requested by the client in the Host HTTP request header. Host names and ports of reverse proxies (load balancers, CDNs) may differ from the origin server handling the request, in that case the X-Forwarded-Host header is useful to determine which Host was originally used. This header is used for debugging, statistics, and generating location-dependent content and by design it exposes privacy sensitive information, such as the IP address of the client. Therefore the user's privacy must be kept in mind when deploying this header. A standardized version of this header is the HTTP Forwarded header.",
+    "syntax": "X-Forwarded-Host: <host>",
+    "examples": [
+      "X-Forwarded-Host: id42.example-cdn.com",
+      "X-Forwarded-Host: en.wikipedia.org:8080",
+      "X-Forwarded-Host: en.wikipedia.org"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host"
+  },
+  "x-forwarded-proto": {
+    "description": "The X-Forwarded-Proto (XFP) header is a de-facto standard header for identifying the protocol (HTTP or HTTPS) that a client used to connect to your proxy or load balancer. Your server access logs contain the protocol used between the server and the load balancer, but not the protocol used between the client and the load balancer. To determine the protocol used between the client and the load balancer, the X-Forwarded-Proto request header can be used. A standardized version of this header is the HTTP Forwarded header.",
+    "syntax": "X-Forwarded-Proto: <protocol>",
+    "examples": [
+      "X-Forwarded-Proto: https",
+      "# Microsoft\nFront-End-Https: on\n\nX-Forwarded-Protocol: https\nX-Forwarded-Ssl: on\nX-Url-Scheme: https"
+    ],
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto"
+  },
+  "a-im": {
+    "description": "Acceptable instance-manipulations for the request.",
+    "syntax": "A-IM: feed",
+    "examples": ["A-IM: feed"],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "accept-additions": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "accept-datetime": {
+    "description": "Acceptable version in time.",
+    "syntax": "Accept-Datetime: Thu, 31 May 2007 20:35:00 GMT",
+    "examples": ["Accept-Datetime: Thu, 31 May 2007 20:35:00 GMT"],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "accept-features": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "access-control": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "alpn": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "alt-used": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "alternates": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "amp-cache-transform": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "apply-to-redirect-ref": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "authentication-control": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "authentication-info": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "c-ext": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "c-man": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "c-opt": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "c-pep": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "c-pep-info": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "cache-status": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "cal-managed-id": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "caldav-timezones": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "capsule-protocol": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "cdn-cache-control": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "cdn-loop": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "cert-not-after": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "cert-not-before": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "close": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "configuration-context": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "content-base": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "content-id": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "content-md5": {
+    "description": "A Base64-encoded binary MD5 sum of the content of the request body.",
+    "syntax": "Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ==",
+    "examples": ["Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ=="],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "content-script-type": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "content-style-type": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "content-version": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "cookie2": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "cross-origin-embedder-policy-report-only": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "cross-origin-opener-policy-report-only": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "dasl": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "dav": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "default-style": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "delta-base": {
+    "description": "Specifies the delta-encoding entity tag of the response.",
+    "syntax": "Delta-Base: \"abc\"",
+    "examples": ["Delta-Base: \"abc\""],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "depth": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "derived-from": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "destination": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "differential-id": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "ediint-features": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "ext": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "getprofile": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "hobareg": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "http2-settings": {
+    "description": "A request that upgrades from HTTP/1.1 to HTTP/2 MUST include exactly one HTTP2-Setting header field. The HTTP2-Settings header field is a connection-specific header field that includes parameters that govern the HTTP/2 connection, provided in anticipation of the server accepting the request to upgrade.",
+    "syntax": "HTTP2-Settings: token64",
+    "examples": ["HTTP2-Settings: token64"],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "if": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "if-schedule-tag-match": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "im": {
+    "description": "Instance-manipulations applied to the response.",
+    "syntax": "IM: feed",
+    "examples": ["IM: feed"],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "include-referred-token-binding-id": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "isolation": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "label": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "last-event-id": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "lock-token": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "man": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "memento-datetime": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "meter": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "method-check": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "method-check-expires": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "mime-version": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "negotiate": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "odata-entityid": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "odata-isolation": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "odata-maxversion": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "odata-version": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "opt": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "optional-www-authenticate": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "ordering-type": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "origin-agent-cluster": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "oscore": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "oslc-core-version": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "overwrite": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "p3p": {
+    "description": "This field is supposed to set P3P policy, in the form of P3P:CP=\"your_compact_policy\". However, P3P did not take off, most browsers have never fully implemented it, a lot of websites set this field with fake policy text, that was enough to fool browsers the existence of P3P policy and grant permissions for third party cookies.",
+    "syntax": "P3P: CP=\"This is not a P3P policy! See https://en.wikipedia.org/wiki/Special:CentralAutoLogin/P3P for more info.\"",
+    "examples": [
+      "P3P: CP=\"This is not a P3P policy! See https://en.wikipedia.org/wiki/Special:CentralAutoLogin/P3P for more info.\""
+    ],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "pep": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "pep-info": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "pics-label": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "ping-from": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "ping-to": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "position": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "prefer": {
+    "description": "Allows client to request that certain behaviors be employed by a server while processing a request.",
+    "syntax": "Prefer: return=representation",
+    "examples": ["Prefer: return=representation"],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "preference-applied": {
+    "description": "Indicates which Prefer tokens were honored by the server and applied to the processing of the request.",
+    "syntax": "Preference-Applied: return=representation",
+    "examples": ["Preference-Applied: return=representation"],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "priority": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "profileobject": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "protocol": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "protocol-info": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "protocol-query": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "protocol-request": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "proxy-authentication-info": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "proxy-features": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "proxy-instruction": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "proxy-status": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "public": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "public-key-pins": {
+    "description": "HTTP Public Key Pinning, announces hash of website's authentic TLS certificate",
+    "syntax": "Public-Key-Pins: max-age=2592000; pin-sha256=\"E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=\";",
+    "examples": [
+      "Public-Key-Pins: max-age=2592000; pin-sha256=\"E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=\";"
+    ],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "public-key-pins-report-only": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "redirect-ref": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "referer-root": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "refresh": {
+    "description": "Used in redirection, or when a new resource has been created. This refresh redirects after 5 seconds. Header extension introduced by Netscape and supported by most web browsers. Defined by HTML Standard",
+    "syntax": "Refresh: 5; url=http://www.w3.org/pub/WWW/People.html",
+    "examples": ["Refresh: 5; url=http://www.w3.org/pub/WWW/People.html"],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "repeatability-client-id": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "repeatability-first-sent": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "repeatability-request-id": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "repeatability-result": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "replay-nonce": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "safe": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "schedule-reply": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "schedule-tag": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "sec-token-binding": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "sec-websocket-extensions": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "sec-websocket-key": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "sec-websocket-protocol": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "sec-websocket-version": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "security-scheme": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "set-cookie2": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "setprofile": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "slug": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "soapaction": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "status-uri": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "sunset": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "surrogate-capability": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "surrogate-control": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "tcn": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "timeout": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "topic": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "traceparent": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "tracestate": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "ttl": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "urgency": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "uri": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "variant-vary": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "*": {
+    "examples": [],
+    "link": "https://www.iana.org/assignments/http-fields/http-fields.xhtml"
+  },
+  "referer [sic]": {
+    "description": "This is the address of the previous web page from which a link to the currently requested page was followed. (The word \"referrer\" has been misspelled in the RFC as well as in most implementations to the point that it has become standard usage and is considered correct terminology)",
+    "syntax": "Referer [sic]",
+    "examples": [],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "x-requested-with": {
+    "description": "Mainly used to identify Ajax requests (most JavaScript frameworks send this field with value of XMLHttpRequest); also identifies Android apps using WebView",
+    "syntax": "X-Requested-With: XMLHttpRequest",
+    "examples": ["X-Requested-With: XMLHttpRequest"],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Requested-With"
+  },
+  "front-end-https": {
+    "description": "Non-standard header field used by Microsoft applications and load-balancers",
+    "syntax": "Front-End-Https: on",
+    "examples": ["Front-End-Https: on"],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "x-http-method-override": {
+    "description": "Requests a web application to override the method specified in the request (typically POST) with the method given in the header field (typically PUT or DELETE). This can be used when a user agent or firewall prevents PUT or DELETE methods from being sent directly (note that this is either a bug in the software component, which ought to be fixed, or an intentional configuration, in which case bypassing it may be the wrong thing to do).",
+    "syntax": "X-HTTP-Method-Override: DELETE",
+    "examples": ["X-HTTP-Method-Override: DELETE"],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "x-att-deviceid": {
+    "description": "Allows easier parsing of the MakeModel/Firmware that is usually found in the User-Agent String of AT&T Devices",
+    "syntax": "X-Att-Deviceid: GT-P7320/P7320XXLPG",
+    "examples": ["X-Att-Deviceid: GT-P7320/P7320XXLPG"],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "x-wap-profile": {
+    "description": "Links to an XML file on the Internet with a full description and details about the device currently connecting. In the example to the right is an XML file for an AT&T Samsung Galaxy S2.",
+    "syntax": "x-wap-profile: http://wap.samsungmobile.com/uaprof/SGH-I777.xml",
+    "examples": [
+      "x-wap-profile: http://wap.samsungmobile.com/uaprof/SGH-I777.xml"
+    ],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "proxy-connection": {
+    "description": "Implemented as a misunderstanding of the HTTP specifications. Common because of mistakes in implementations of early HTTP versions. Has exactly the same functionality as standard Connection field. Must not be used with HTTP/2.",
+    "syntax": "Proxy-Connection: keep-alive",
+    "examples": ["Proxy-Connection: keep-alive"],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "x-uidh": {
+    "description": "Server-side deep packet insertion of a unique ID identifying customers of Verizon Wireless; also known as \"perma-cookie\" or \"supercookie\"",
+    "syntax": "X-UIDH: ...",
+    "examples": ["X-UIDH: ..."],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "x-csrf-token": {
+    "description": "Used to prevent cross-site request forgery. Alternative header names are: X-CSRFToken and X-XSRF-TOKEN",
+    "syntax": "X-Csrf-Token: i8XNjC4b8KVok4uw5RftR38Wgp2BFwql",
+    "examples": ["X-Csrf-Token: i8XNjC4b8KVok4uw5RftR38Wgp2BFwql"],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "x-request-id": {
+    "description": "Correlates HTTP requests between a client and server.",
+    "syntax": "X-Request-ID: f058ebd6-02f7-4d3f-942e-904344e8cde5",
+    "examples": ["X-Request-ID: f058ebd6-02f7-4d3f-942e-904344e8cde5"],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "x-correlation-id": {
+    "description": "Correlates HTTP requests between a client and server.",
+    "syntax": "X-Correlation-ID",
+    "examples": [],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "x-content-security-policy": {
+    "description": "Content Security Policy definition.",
+    "syntax": "X-Content-Security-Policy",
+    "examples": [],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "x-webkit-csp": {
+    "description": "Content Security Policy definition.",
+    "syntax": "X-WebKit-CSP: default-src 'self'",
+    "examples": ["X-WebKit-CSP: default-src 'self'"],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "permissions-policy": {
+    "description": "To allow or disable different features or APIs of the browser.",
+    "syntax": "Permissions-Policy: fullscreen=(), camera=(), microphone=(), geolocation=(), interest-cohort=()",
+    "examples": [
+      "Permissions-Policy: fullscreen=(), camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    ],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "report-to": {
+    "description": "Instructs the user agent to store reporting endpoints for an origin.",
+    "syntax": "Report-To: { \"group\": \"csp-endpoint\", \"max_age\": 10886400, \"endpoints\": [ { \"url\": \"https-url-of-site-which-collects-reports\" } ] }",
+    "examples": [
+      "Report-To: { \"group\": \"csp-endpoint\", \"max_age\": 10886400, \"endpoints\": [ { \"url\": \"https-url-of-site-which-collects-reports\" } ] }"
+    ],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "status": {
+    "description": "CGI header field specifying the status of the HTTP response. Normal HTTP responses use a separate \"Status-Line\" instead, defined by RFC 7230.",
+    "syntax": "Status: 200 OK",
+    "examples": ["Status: 200 OK"],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "x-content-duration": {
+    "description": "Provide the duration of the audio or video in seconds; only supported by Gecko browsers",
+    "syntax": "X-Content-Duration: 42.666",
+    "examples": ["X-Content-Duration: 42.666"],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "x-powered-by": {
+    "description": "Specifies the technology (e.g. ASP.NET, PHP, JBoss) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)",
+    "syntax": "X-Powered-By: PHP/5.4.0",
+    "examples": ["X-Powered-By: PHP/5.4.0"],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Powered-By"
+  },
+  "x-redirect-by": {
+    "description": "Specifies the component that is responsible for a particular redirect.",
+    "syntax": "X-Redirect-By: WordPress",
+    "examples": ["X-Redirect-By: WordPress", "X-Redirect-By: Polylang"],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  },
+  "x-ua-compatible": {
+    "description": "Recommends the preferred rendering engine (often a backward-compatibility mode) to use to display the content. Also used to activate Chrome Frame in Internet Explorer. In HTML Standard, only the IE=edge value is defined.",
+    "syntax": "X-UA-Compatible: IE=edge",
+    "examples": [
+      "X-UA-Compatible: IE=edge",
+      "X-UA-Compatible: IE=EmulateIE7",
+      "X-UA-Compatible: Chrome=1"
+    ],
+    "link": "https://en.wikipedia.org/wiki/List_of_HTTP_header_fields"
+  }
+}
