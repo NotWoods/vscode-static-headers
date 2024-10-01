@@ -3,12 +3,31 @@
   "displayName": "_headers Language Support",
   "description": "Syntax highlighting support for the _headers file in Netlify/Cloudflare",
   "version": "0.1.0",
+  "publisher": "Tiger Oakes",
+  "author": "Tiger Oakes <contact@tigeroakes.com>",
+  "license": "MIT",
+  "keywords": [
+    "netlify",
+    "cloudflare",
+    "pages",
+    "headers",
+    "redirects",
+    "static",
+    "http"
+  ],
   "engines": {
     "vscode": "^1.93.0"
   },
   "categories": [
     "Programming Languages"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NotWoods/vscode-static-headers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NotWoods/vscode-static-headers/issues"
+  },
   "main": "./out/extension.js",
   "contributes": {
     "languages": [
