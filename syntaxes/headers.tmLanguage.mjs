@@ -1,22 +1,23 @@
-const END_OF_LINE = /\Z/;
+import packageJson from "../package.json" with { type: 'json' };
 
 const tmLanguage = {
-  name: "Headers",
+  name: packageJson.contributes.languages[0].id,
+  scopeName: packageJson.contributes.grammars[0].scopeName,
   patterns: [
     { include: "#comment" },
     { include: "#uri" },
-    { include: "#header" },
+    { include: "#header-field" },
   ],
   repository: {
     comment: {
       name: "comment.line.headers",
       begin: /\#/, // First '#' in a line
-      end: END_OF_LINE,
+      end: /\Z/,
     },
     uri: {
       name: "meta.uri.headers",
-      begin: /^\s*\//, // Line that starts with '/' (possibly with leading spaces)
-      end: END_OF_LINE,
+      begin: /^\s*(\/)/, // Line that starts with '/' (possibly with leading spaces)
+      end: /\s*\Z/,
       patterns: [{ include: "#placeholder" }, { include: "#wildcard" }],
     },
     wildcard: {
@@ -28,23 +29,32 @@ const tmLanguage = {
       name: "markup.italic.headers",
       // Placeholders (:placeholders) can only be used at the start of a path segment.
       // Check that there is a leading '/' and either trailing '/' or whitespace.
-      match: /(?<=[\/=])(\:)(\w+)(?=(?:\s\Z))/,
+      match: /(?<=[\/])(:)([-\w]+)(?=(?:[ \t\/]|\Z))/,
       captures: {
         1: { name: "markup.placeholder.colon.headers" },
         2: { name: "markup.placeholder.headers" },
       },
     },
-    header: {
-      name: "meta.structure.dictionary.value.headers",
-      // Entire line that contains a colon (:)
-      match: /^\s*([\w-]+)\s*(:)\s*(.+)([,;]?)\s*/,
+    'header-field': {
+      // header name
+      begin: /([\w-]+)\s*(:)\s*/,
+      end: /(?<=\S)(?<!:)|$/,
       captures: {
-        1: { name: "entity.name.type.headers" },
-        2: { name: "punctuation.separator.key-value.headers" }, // The ':' character
-        3: { name: "string.unquoted.headers" },
-        4: { name: "punctuation.separator.headers" }, // ',' or ';' at the end of the line
+        1: {
+          name: "variable.other.key.headers"
+        },
+        2: {
+          name: "punctuation.separator.key-value.headers" // The ':' character
+        }
       },
+      patterns: [
+        { include: "#header-value" }
+      ]
     },
+    'header-value': {
+      name: 'string.unquoted.headers',
+      match: /\G(.+)/,
+    }
   },
 };
 

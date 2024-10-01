@@ -19,7 +19,7 @@
 /site.webmanifest
   Content-Type: application/manifest+json
 
-/_astro/*
+    /_astro/*
   Cache-Control: max-age=31536000, immutable
 
 # a path:

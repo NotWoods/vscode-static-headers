@@ -14,8 +14,8 @@
       {
         "id": "headers",
         "aliases": [
-          "Headers",
-          "headers"
+          "Netlify _headers",
+          "Cloudflare _headers"
         ],
         "filenames": [
           "_headers"
