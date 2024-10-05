@@ -17,7 +17,7 @@ const tmLanguage = {
     },
     uri: {
       name: "meta.uri.headers",
-      begin: /^\s*(\/)/, // Line that starts with '/' (possibly with leading spaces)
+      begin: /^\s*(\/|https:\/\/)/, // Line that starts with '/' or 'https://' (possibly with leading spaces)
       end: /\s*\Z/,
       patterns: [{ include: "#placeholder" }, { include: "#wildcard" }],
     },

@@ -20,7 +20,7 @@
     },
     "uri": {
       "name": "meta.uri.headers",
-      "begin": "^\\s*(\\/)",
+      "begin": "^\\s*(\\/|https:\\/\\/)",
       "end": "\\s*\\Z",
       "patterns": [
         {

@@ -38,3 +38,9 @@
   cache-control: no-cache
   cache-control: no-store
   cache-control: must-revalidate
+
+https://example.com/*
+  foo: bar
+
+https://:placeholder.domain/*
+  foo: baz

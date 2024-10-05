@@ -18,4 +18,4 @@ MDN data for various HTTP headers is displayed on hover.
 
 ## Known Issues
 
-- Paths with a domain in Cloudflare Pages don't have correct syntax highlighting
+- Placeholders inside a hostname in Cloudflare Pages don't have correct syntax highlighting
