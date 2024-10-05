@@ -1,4 +1,4 @@
-# _headers Language Support
+# _headers for Netlify and Cloudflare Pages
 
 Syntax highlighting for the `_headers` file in [Netlify](https://docs.netlify.com/routing/headers/#syntax-for-the-headers-file) and [Cloudflare Pages](https://developers.cloudflare.com/pages/configuration/headers/).
 

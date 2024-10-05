@@ -1,9 +1,9 @@
 {
   "name": "headers",
-  "displayName": "_headers Language Support",
+  "displayName": "_headers for Netlify and Cloudflare Pages",
   "description": "Syntax highlighting support for the _headers file in Netlify/Cloudflare",
   "version": "0.1.0",
-  "publisher": "Tiger Oakes",
+  "publisher": "OakesSoftware",
   "author": "Tiger Oakes <contact@tigeroakes.com>",
   "license": "MIT",
   "keywords": [
